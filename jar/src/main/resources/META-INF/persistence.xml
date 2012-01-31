@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="http://java.sun.com/xml/ns/persistence" version="1.0">
+	<persistence-unit name="tomee-maven-demo-pu" transaction-type="JTA">
+		<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+		<jta-data-source>jdbc/tomee-maven-demo-ds</jta-data-source>
+		<properties>
+			<property name="eclipselink.target-database" 
+                      value="org.eclipse.persistence.platform.database.oracle.OraclePlatform" />
+			<property name="eclipselink.weaving" value="false" />
+			<property name="eclipselink.weaving.internal" value="false" />
+			<property name="javax.persistence.query.timeout" value="10" />
+      </properties>
+	</persistence-unit>
+</persistence>

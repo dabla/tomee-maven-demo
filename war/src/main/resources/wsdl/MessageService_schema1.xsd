@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema version="1.0" targetNamespace="urn:service.dabla.be" xmlns:ns1="urn:model.dabla.be" xmlns:tns="urn:service.dabla.be" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:import namespace="urn:model.dabla.be" schemaLocation="MessageService_schema2.xsd"/>
+
+  <xs:element name="callbackMessage" type="tns:callbackMessage"/>
+
+  <xs:element name="create" type="tns:create"/>
+
+  <xs:complexType name="create">
+    <xs:sequence>
+      <xs:element ref="ns1:Message" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="message">
+    <xs:sequence>
+      <xs:element name="id" type="xs:long" minOccurs="0"/>
+      <xs:element name="description" type="xs:string"/>
+      <xs:element name="date" type="xs:dateTime" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="callbackMessage">
+    <xs:sequence>
+      <xs:element ref="ns1:Message" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>
+

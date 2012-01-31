@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema version="1.0" targetNamespace="urn:model.dabla.be" xmlns:ns1="urn:service.dabla.be" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:import namespace="urn:service.dabla.be" schemaLocation="MessageService_schema1.xsd"/>
+
+  <xs:element name="Message" type="ns1:message"/>
+</xs:schema>
+

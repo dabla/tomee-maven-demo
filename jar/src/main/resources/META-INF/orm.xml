@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity-mappings xmlns="http://java.sun.com/xml/ns/persistence/orm" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm http://java.sun.com/xml/ns/persistence/orm_1_0.xsd" version="1.0">
+	<persistence-unit-metadata>
+		<xml-mapping-metadata-complete />
+		<exclude-default-mappings />
+	</persistence-unit-metadata>
+
+	<entity class="be.dabla.model.Message" name="Message">
+	    <table name="MESSAGE" />
+	    <named-query name="Message.findAll">
+	        <query><![CDATA[select m from Message m order by m.id DESC]]></query>
+	    </named-query>
+	    <entity-listeners>
+			<entity-listener class="be.dabla.model.validation.EntityValidationEventListener">
+	            <pre-persist method-name="validate" />
+	            <pre-remove method-name="validate" />
+	            <pre-update method-name="validate" />
+	        </entity-listener>
+	    </entity-listeners>
+	    <attributes>
+    		<id name="id">
+				<column name="ID" length="10" />
+				<sequence-generator name="MSG_SEQ" sequence-name="MESSAGE_SEQ" allocation-size="1" />
+				<generated-value generator="MSG_SEQ" strategy="SEQUENCE" />
+			</id>
+			<basic name="description">
+				<column name="DESCRIPTION" unique="false" nullable="false" length="255" />
+			</basic>
+			<basic name="date">
+				<column name="CREATION_DATE" unique="false" nullable="false" length="10" />
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+		</attributes>
+	</entity>
+</entity-mappings>

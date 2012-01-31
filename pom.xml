@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>be.dabla</groupId>
+	<artifactId>tomee-maven-demo</artifactId>
+	<version>2.0.0</version>
+	<packaging>pom</packaging>
+	<name>TomEE Maven Demo</name>
+
+	<organization>
+		<name>dablomatique</name>
+		<url>http://dablomatique.wordpress.com/</url>
+	</organization>
+
+	<developers>
+		<developer>
+			<id>dabla</id>
+			<name>David Blain</name>
+			<roles>
+				<role>developer</role>
+			</roles>
+			<email>dablomatique@gmail.com</email>
+			<organization>dablomatique</organization>
+		</developer>
+	</developers>
+
+	<modules>
+		<module>jar</module>
+		<module>ejb</module>
+		<module>war</module>
+		<module>ear</module>
+	</modules>
+
+	<build>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>2.0.2</version>
+					<configuration>
+						<source>1.6</source>
+						<target>1.6</target>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-surefire-plugin</artifactId>
+					<version>2.9</version>
+					<configuration>
+						<forkMode>once</forkMode>
+						<!-- http://jlorenzen.blogspot.com/2007/07/how-to-capture-logging-output-in-unit.html -->
+						<systemProperties>
+							<property>
+							<name>java.util.logging.config.file</name>
+							<value>${build.testOutputDirectory}/logging.properties</value>
+							</property>
+						</systemProperties>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.codehaus.mojo</groupId>
+					<artifactId>cobertura-maven-plugin</artifactId>
+					<version>2.5.1</version>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+		<plugins>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>cobertura-maven-plugin</artifactId>
+				<!-- http://stackoverflow.com/questions/951569/exclude-code-from-code-coverage-with-cobertura -->
+				<configuration>
+					<instrumentation>
+						<excludes>
+							<exclude>**/jaxws/*.class</exclude>
+						</excludes>
+					</instrumentation>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>
+
+	<reporting>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-project-info-reports-plugin</artifactId>
+				<version>2.1.2</version>
+				<reportSets>
+					<reportSet>
+						<reports>
+							<report>index</report>
+							<report>summary</report>
+							<report>project-team</report>
+							<report>dependencies</report>
+							<report>dependency-convergence</report>
+						</reports>
+					</reportSet>
+				</reportSets>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-checkstyle-plugin</artifactId>
+				<version>2.1</version>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>cobertura-maven-plugin</artifactId>
+				<version>2.5.1</version>
+			</plugin>
+		</plugins>
+	</reporting>
+	
+	<profiles>
+		<profile>
+			<id>dev</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<properties>
+				<stage>Development</stage>
+				<jdbc.url>jdbc:oracle:thin:@localhost:1521:XE</jdbc.url>
+				<jdbc.user>scott</jdbc.user>
+				<jdbc.password>scott</jdbc.password>
+			</properties>
+		</profile>
+	</profiles>
+</project>

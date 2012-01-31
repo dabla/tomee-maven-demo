@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>be.dabla</groupId>
+		<artifactId>tomee-maven-demo</artifactId>
+		<version>2.0.0</version>
+	</parent>
+
+	<artifactId>tomee-maven-demo-ear</artifactId>
+	<packaging>ear</packaging>
+	<name>tomee-maven-demo-ear</name>
+	
+	<dependencies>
+		<dependency>
+			<groupId>be.dabla</groupId>
+			<artifactId>tomee-maven-demo-war</artifactId>
+			<version>${project.version}</version>
+			<type>war</type>
+		</dependency>
+		<dependency>
+			<groupId>be.dabla</groupId>
+			<artifactId>tomee-maven-demo-ejb</artifactId>
+			<version>${project.version}</version>
+			<type>ejb</type>
+		</dependency>
+		<dependency>
+			<groupId>be.dabla</groupId>
+			<artifactId>tomee-maven-demo-jar</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<!-- http://stackoverflow.com/questions/3659726/weblogic-ejb-deployement-classes-in-jar-inside-ear-are-not-accessible -->
+		<dependency>
+		    <groupId>javax.validation</groupId>
+		    <artifactId>validation-api</artifactId>
+		    <version>1.0.0.GA</version>
+		</dependency>
+		<dependency>
+		    <groupId>org.hibernate</groupId>
+		    <artifactId>hibernate-validator</artifactId>
+		    <version>4.0.2.GA</version>
+		</dependency>
+		<dependency>
+		    <groupId>org.slf4j</groupId>
+		    <artifactId>slf4j-api</artifactId>
+		    <version>1.6.1</version>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-ear-plugin</artifactId>
+				<version>2.6</version>
+				<configuration>
+					<filtering>true</filtering>
+					<defaultJavaBundleDir>APP-INF/lib</defaultJavaBundleDir>
+					<displayName>tomee-maven-demo-ear</displayName>
+					<description>TomEE Maven Demo</description>
+					<version>5</version>
+					<archive>
+						<manifestEntries>
+							<WebLogic-Application-Version>${project.version}</WebLogic-Application-Version>
+						</manifestEntries>
+					</archive>
+					<modules>
+						<webModule>
+							<groupId>be.dabla</groupId>
+							<artifactId>tomee-maven-demo-war</artifactId>
+							<contextRoot>tomee-maven-demo-context-root</contextRoot>
+							<excluded>web.xml</excluded>
+						</webModule>
+						<ejbModule>
+							<groupId>be.dabla</groupId>
+							<artifactId>tomee-maven-demo-ejb</artifactId>
+						</ejbModule>
+						<jarModule>
+			            	<groupId>javax.activation</groupId>
+							<artifactId>activation</artifactId>
+			            	<excluded>true</excluded>
+			            </jarModule>
+			            <jarModule>
+							<groupId>javax.xml.bind</groupId> 
+							<artifactId>jaxb-api</artifactId> 
+							<excluded>true</excluded>
+			            </jarModule>
+			            <jarModule>
+							<groupId>com.sun.xml.bind</groupId>
+							<artifactId>jaxb-impl</artifactId>
+							<excluded>true</excluded>
+			            </jarModule>
+			            <jarModule>
+			            	<groupId>javax.xml.stream</groupId>
+							<artifactId>stax-api</artifactId>
+							<excluded>true</excluded>
+			            </jarModule>
+					</modules>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+</project>

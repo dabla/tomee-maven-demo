@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" output="ejb/target/classes" path="ejb/src/main/java"/>
+	<classpathentry excluding="**" kind="src" output="ejb/target/classes" path="ejb/src/main/resources"/>
+	<classpathentry kind="src" output="ejb/target/test-classes" path="ejb/src/test/java"/>
+	<classpathentry excluding="**" kind="src" output="ejb/target/test-classes" path="ejb/src/test/resources"/>
+	<classpathentry kind="src" output="jar/target/classes" path="jar/src/main/java"/>
+	<classpathentry excluding="**" kind="src" output="jar/target/classes" path="jar/src/main/resources"/>
+	<classpathentry kind="src" output="jar/target/test-classes" path="jar/src/test/java"/>
+	<classpathentry excluding="**" kind="src" output="jar/target/test-classes" path="jar/src/test/resources"/>
+	<classpathentry kind="src" output="war/target/classes" path="war/src/main/java"/>
+	<classpathentry excluding="**" kind="src" output="war/target/classes" path="war/src/main/resources"/>
+	<classpathentry excluding="**" kind="src" output="war/target/classes" path="war/src/main/webapp"/>
+	<classpathentry kind="src" output="war/target/test-classes" path="war/src/test/java"/>
+	<classpathentry excluding="**" kind="src" output="war/target/test-classes" path="war/src/test/resources"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6"/>
+	<classpathentry kind="con" path="org.maven.ide.eclipse.MAVEN2_CLASSPATH_CONTAINER"/>
+	<classpathentry kind="output" path="target/classes"/>
+</classpath>

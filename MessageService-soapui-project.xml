@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project name="MessageService" resourceRoot="" soapui-version="3.6.1" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" wsaVersion="200508" name="MessageServiceSoapBinding" type="wsdl" bindingName="{urn:service.dabla.be}MessageServiceSoapBinding" soapVersion="1_1" anonymous="optional" definition="http://localhost:8081/tomee-maven-demo-war-2.0.0/services/MessageService?wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://localhost:8081/tomee-maven-demo-war-2.0.0/services/MessageService?wsdl"><con:part><con:url>http://localhost:8081/tomee-maven-demo-war-2.0.0/services/MessageService?wsdl</con:url><con:content><![CDATA[<wsdl:definitions name="MessageService" targetNamespace="urn:service.dabla.be" xmlns:ns1="http://schemas.xmlsoap.org/wsdl/soap/http" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="urn:service.dabla.be" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsp="http://www.w3.org/ns/ws-policy" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <wsdl:types>
+    <xs:schema targetNamespace="urn:service.dabla.be" version="1.0" xmlns:ns1="urn:model.dabla.be" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:import namespace="urn:model.dabla.be"/>
+      <xs:element name="callbackMessage" type="tns:callbackMessage"/>
+      <xs:element name="create" type="tns:create"/>
+      <xs:complexType name="create">
+        <xs:sequence>
+          <xs:element minOccurs="0" ref="ns1:Message"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="message">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="id" type="xs:long"/>
+          <xs:element name="description" type="xs:string"/>
+          <xs:element minOccurs="0" name="date" type="xs:dateTime"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="callbackMessage">
+        <xs:sequence>
+          <xs:element minOccurs="0" ref="ns1:Message"/>
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+    <xs:schema targetNamespace="urn:model.dabla.be" version="1.0" xmlns:ns1="urn:service.dabla.be" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:import namespace="urn:service.dabla.be"/>
+      <xs:element name="Message" type="ns1:message"/>
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="callbackMessage">
+    <wsdl:part element="tns:callbackMessage" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="create">
+    <wsdl:part element="tns:create" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="MessageService">
+    <wsdl:operation name="create">
+      <wsdl:input message="tns:create" name="create" wsam:Action="create" wsaw:Action="create"></wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="callbackMessage">
+      <wsdl:input message="tns:callbackMessage" name="callbackMessage" wsam:Action="callbackMessage" wsaw:Action="callbackMessage"></wsdl:input>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="MessageServiceSoapBinding" type="tns:MessageService">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsaw:UsingAddressing wsdl:required="false"/>
+    <wsp:PolicyReference URI="#MessageServiceSoapBinding_WSAM_Addressing_Policy"/>
+    <wsdl:operation name="create">
+      <soap:operation soapAction="create" style="document"/>
+      <wsdl:input name="create">
+        <soap:body use="literal"/>
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="callbackMessage">
+      <soap:operation soapAction="callbackMessage" style="document"/>
+      <wsdl:input name="callbackMessage">
+        <soap:body use="literal"/>
+      </wsdl:input>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="MessageService">
+    <wsdl:port binding="tns:MessageServiceSoapBinding" name="MessageServicePort">
+      <soap:address location="http://localhost:8081/tomee-maven-demo-war-2.0.0/services/MessageService"/>
+    </wsdl:port>
+  </wsdl:service>
+  <wsp:Policy wsu:Id="MessageServiceSoapBinding_WSAM_Addressing_Policy" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd">
+    <wsam:Addressing wsp:Optional="true">
+      <wsp:Policy/>
+    </wsam:Addressing>
+  </wsp:Policy>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://localhost:8081/tomee-maven-demo-war-2.0.0/services/MessageService</con:endpoint></con:endpoints><con:operation isOneWay="false" action="callbackMessage" name="callbackMessage" bindingOperationName="callbackMessage" type="One-Way" inputName="callbackMessage" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1" useWsAddressing="true"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8081/tomee-maven-demo-war-2.0.0/services/MessageService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:service.dabla.be" xmlns:urn1="urn:entity.dabla.be">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <urn:callbackMessage>
+         <!--Optional:-->
+         <urn1:Message>
+            <id>?</id>
+            <description>?</description>
+            <date>?</date>
+         </urn1:Message>
+      </urn:callbackMessage>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="callbackMessage"/></con:call></con:operation><con:operation isOneWay="false" action="create" name="create" bindingOperationName="create" type="One-Way" inputName="create" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1" useWsAddressing="true"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8081/tomee-maven-demo-war-2.0.0/services/MessageService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:service.dabla.be" xmlns:urn1="urn:model.dabla.be">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <urn:create>
+         <!--Optional:-->
+         <urn1:Message>
+            <description>Hello David</description>
+         </urn1:Message>
+      </urn:create>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="create" addDefaultAction="true" addDefaultTo="true" replyTo="http://localhost:9999/MockMessageService" generateMessageId="true"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:mockService port="9999" path="/MockMessageService" host="PO100012899" name="MockMessageService"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.mock.WsdlMockService@require-soap-action">false</con:setting></con:settings><con:mockOperation name="callbackMessage" interface="MessageServiceSoapBinding" operation="callbackMessage"><con:settings/><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:defaultResponse>Response 1</con:defaultResponse><con:response name="Response 1" encoding="UTF-8"><con:settings/><con:responseContent/><con:wsaConfig mustUnderstand="NONE" version="200508" action="callbackMessage"/></con:response><con:dispatchConfig/></con:mockOperation><con:properties/></con:mockService><con:properties/><con:wssContainer/></con:soapui-project>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<weblogic-ejb-jar xmlns="http://www.bea.com/ns/weblogic/10.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://www.bea.com/ns/weblogic/10.0 http://www.bea.com/ns/weblogic/10.0/weblogic-ejb-jar.xsd">
+	<weblogic-enterprise-bean>
+		<ejb-name>MessageEJB</ejb-name>
+		<stateless-session-descriptor>
+			<business-interface-jndi-name-map>
+				<business-remote>be.dabla.domain.MessageEJBRemote</business-remote>
+				<jndi-name>MessageEJB</jndi-name>
+			</business-interface-jndi-name-map>
+		</stateless-session-descriptor>
+		<enable-call-by-reference>true</enable-call-by-reference>
+	</weblogic-enterprise-bean>
+	<weblogic-enterprise-bean>
+		<ejb-name>MessageMDBSender</ejb-name>
+		<stateless-session-descriptor>
+			<business-interface-jndi-name-map>
+				<business-remote>be.dabla.domain.MessageMDBSenderRemote</business-remote>
+				<jndi-name>MessageMDBSender</jndi-name>
+			</business-interface-jndi-name-map>
+		</stateless-session-descriptor>
+		<enable-call-by-reference>true</enable-call-by-reference>
+	</weblogic-enterprise-bean>
+	<weblogic-enterprise-bean>
+        <ejb-name>MessageMDB</ejb-name>
+        <message-driven-descriptor>
+            <pool>
+            	<max-beans-in-free-pool>1</max-beans-in-free-pool>
+                <initial-beans-in-free-pool>1</initial-beans-in-free-pool>
+            </pool>
+            <destination-jndi-name>jms/tomee-maven-demo-q</destination-jndi-name>
+            <connection-factory-jndi-name>jms/tomee-maven-demo-cf</connection-factory-jndi-name>
+        </message-driven-descriptor>
+    </weblogic-enterprise-bean>
+</weblogic-ejb-jar>

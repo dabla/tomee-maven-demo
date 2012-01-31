@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+   xmlns:ui="http://java.sun.com/jsf/facelets"
+   xmlns:f="http://java.sun.com/jsf/core"
+   xmlns:h="http://java.sun.com/jsf/html"
+   xmlns:c="http://java.sun.com/jsp/jstl/core"
+   template="/templates/layout.xhtml">
+   <ui:define name="title">Messages</ui:define>
+   <ui:define name="body">
+		<h:form>
+			<h1>Messages</h1>
+			<table>
+				<thead>
+					<tr>
+						<th>Id</th>
+						<th>Description</th>
+						<th>Date</th>
+					</tr>
+				</thead>
+				<tbody>
+					<ui:repeat value="#{messageController.paginator.model}" var="item">
+						<tr>
+							<td>${item.id}</td>
+							<td>${item.description}</td>
+							<td>
+								<h:outputText value="${item.date}" >
+									<f:convertDateTime pattern="dd.MM.yyyy HH:mm" />
+								</h:outputText>
+							</td>
+						</tr>
+					</ui:repeat>
+				</tbody>
+			</table>
+			<h:commandButton value="&lt; Prev" action="#{messageController.paginator.prev}" />
+			${messageController.paginator.pageIndex} / ${messageController.paginator.pages}
+	        <h:commandButton value="Next &gt;" action="#{messageController.paginator.next}" />
+	        <h:inputHidden value="#{messageController.paginator.pageIndex}" />
+        </h:form>
+	</ui:define>
+</ui:composition>
