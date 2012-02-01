@@ -26,6 +26,7 @@
 		</developer>
 	</developers>
 	
+	<!-- http://stackoverflow.com/questions/3724841/where-did-the-eclipselink-maven-repository-go-to -->
 	<repositories>
 	    <repository>
 	        <id>EclipseLink Repo</id>
