@@ -25,6 +25,16 @@
 			<organization>dablomatique</organization>
 		</developer>
 	</developers>
+	
+	<repositories>
+	    <repository>
+	        <id>EclipseLink Repo</id>
+	        <url>http://download.eclipse.org/rt/eclipselink/maven.repo</url>
+	        <snapshots>
+	            <enabled>true</enabled>
+	        </snapshots>
+	    </repository>
+	</repositories>
 
 	<modules>
 		<module>jar</module>
